@@ -1,0 +1,5 @@
+<!-- res/drawable/rounded_blue_button.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@android:color/holo_blue_light" /> <!-- Adjust the color as needed -->
+    <corners android:radius="8dp" /> <!-- Adjust the radius as needed -->
+</shape>
