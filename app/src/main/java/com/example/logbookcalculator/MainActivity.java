@@ -3,9 +3,7 @@ package com.example.logbookcalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,12 +20,11 @@ public class MainActivity extends AppCompatActivity {
     TextView labelResult, txtResult;
 
 
-    private TextView textView;
-    // Declare UI elements
-    private TextView resultTextView;
+    private TextView finalResult;
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     private Button btnAdd, btnSubtract, btnMultiply, btnDivide;
     private Button btnClear, btnEquals;
+    private EditText resultDisplay;
 
     private String operator;
     double firstNum;
@@ -40,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize UI elements
-        resultTextView = findViewById(R.id.textView);
 
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
@@ -61,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
         btnDivide = findViewById(R.id.btnDivide);
 
         // results
-        txtResult = findViewById(R.id.txtResult);
+        resultDisplay = findViewById(R.id.resultDisplay);
+        finalResult = findViewById(R.id.finalResult);
+
 
         btnClear = findViewById(R.id.btnDelete);
         btnEquals = findViewById(R.id.btnEquals);
@@ -81,10 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
         for (Button b : nums) {
             b.setOnClickListener(view -> {
-                if (!txtResult.getText().toString().equals("0")) {
-                    txtResult.setText(txtResult.getText().toString() + b.getText().toString());
+                if (!resultDisplay.getText().toString().equals("0")) {
+                    resultDisplay.setText(resultDisplay.getText().toString() + b.getText().toString());
                 } else {
-                    txtResult.setText(b.getText().toString());
+                    resultDisplay.setText(b.getText().toString());
                 }
             });
         }
@@ -97,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
 
         for (Button b : operators) {
             b.setOnClickListener(view -> {
-                firstNum = Double.parseDouble(txtResult.getText().toString());
+                firstNum = Double.parseDouble(resultDisplay.getText().toString());
                 operation = b.getText().toString();
-                txtResult.setText("0");
+                resultDisplay.setText("0");
             });
         }
 
@@ -118,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnEquals.setOnClickListener(view -> {
-            double secondNum = Double.parseDouble(txtResult.getText().toString());
+            double secondNum = Double.parseDouble(resultDisplay.getText().toString());
             double result;
 
             switch (operation) {
@@ -137,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     result = firstNum + secondNum;
             }
-            txtResult.setText(String.valueOf(result));
+            resultDisplay.setText(String.valueOf(result));
+            finalResult.setText(String.valueOf(result));
             firstNum = result;
         });
 

@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtResult"
+        android:id="@+id/finalResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -234,18 +234,6 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:height="50dp"
-        android:text="hello"
-        android:id="@+id/resultDisplay"
-        android:background="@color/gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHeading"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -256,5 +244,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/resultDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="118dp"
+        android:background="@drawable/edittext_background"
+        android:backgroundTint="#CCCCCC"
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
