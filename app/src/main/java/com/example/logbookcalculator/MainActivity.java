@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
 
         btnClear.setOnClickListener(view -> {
             firstNum= 0;
-            txtResult.setText("0");
+            resultDisplay.setText("0");
+            finalResult.setText("0");
         });
 
         btnEquals.setOnClickListener(view -> {
