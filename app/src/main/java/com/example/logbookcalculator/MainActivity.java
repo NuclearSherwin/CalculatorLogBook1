@@ -158,10 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
             result = firstNum;
         });
-
     }
-
-
 }
 
 

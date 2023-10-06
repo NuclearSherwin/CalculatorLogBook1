@@ -237,7 +237,8 @@
         android:background="@drawable/edittext_background"
         android:backgroundTint="#CCCCCC"
         android:padding="8dp"
-        android:text="0"
+        android:textAlignment="textEnd"
+        android:text=""
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
