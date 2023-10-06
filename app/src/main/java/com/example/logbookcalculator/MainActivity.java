@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private TextView finalResult;
+    private TextView dynamicResult;
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     private Button btnAdd, btnSubtract, btnMultiply, btnDivide;
     private Button btnClear, btnEquals;
@@ -28,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String operator;
     double firstNum;
+
+    double firstNumDynamic;
     String operation;
+
+    private boolean operatorClicked = false;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         btnDivide = findViewById(R.id.btnDivide);
 
         // results
+        dynamicResult = findViewById(R.id.dynamicResult);
         resultDisplay = findViewById(R.id.resultDisplay);
         finalResult = findViewById(R.id.finalResult);
 
@@ -77,11 +83,16 @@ public class MainActivity extends AppCompatActivity {
 
         for (Button b : nums) {
             b.setOnClickListener(view -> {
-                if (!resultDisplay.getText().toString().equals("0")) {
-                    resultDisplay.setText(resultDisplay.getText().toString() + b.getText().toString());
+                if (operatorClicked) {
+                    // Append the number to the resultDisplay without clearing it
+                    resultDisplay.append(b.getText().toString());
+                    dynamicResult.setText(dynamicResult.getText().toString() + b.getText().toString());
                 } else {
+                    // Replace the text in resultDisplay with the number
                     resultDisplay.setText(b.getText().toString());
+                    dynamicResult.setText(b.getText().toString());
                 }
+                operatorClicked = false; // Reset the operatorClicked flag
             });
         }
 
@@ -94,139 +105,59 @@ public class MainActivity extends AppCompatActivity {
         for (Button b : operators) {
             b.setOnClickListener(view -> {
                 firstNum = Double.parseDouble(resultDisplay.getText().toString());
+                firstNumDynamic = Double.parseDouble(dynamicResult.getText().toString());
                 operation = b.getText().toString();
-                resultDisplay.setText("0");
+
+                // Append the operator to the resultDisplay
+                resultDisplay.append(operation);
+                dynamicResult.setText("0");
+                operatorClicked = true; // Set the operatorClicked flag to true
             });
         }
 
-//        btnDelete.setOnClickListener(view -> {
-//            String num = txtResult.getText().toString();
-//            if (num.length() > 1) {
-//                txtResult.setText(num.substring(0, num.length() - 1));
-//            } else if (num.length() == 1 && !num.equals("0")) {
-//                txtResult.setText("0");
-//            }
-//        });
 
         btnClear.setOnClickListener(view -> {
             firstNum= 0;
+            firstNumDynamic = 0;
             resultDisplay.setText("0");
+            dynamicResult.setText("0");
             finalResult.setText("0");
         });
 
         btnEquals.setOnClickListener(view -> {
-            double secondNum = Double.parseDouble(resultDisplay.getText().toString());
+            double secondNumDynamic = Double.parseDouble(dynamicResult.getText().toString());
             double result;
 
             switch (operation) {
                 case "+":
-                    result = firstNum + secondNum;
+                    result = firstNumDynamic + secondNumDynamic;
                     break;
                 case "-":
-                    result = firstNum - secondNum;
+                    result = firstNumDynamic - secondNumDynamic;
                     break;
                 case "*":
-                    result = firstNum * secondNum;
+                    result = firstNumDynamic * secondNumDynamic;
                     break;
                 case "/":
-                    result = firstNum / secondNum;
+                    result = firstNumDynamic / secondNumDynamic;
                     break;
                 default:
-                    result = firstNum + secondNum;
+                    result = firstNumDynamic + secondNumDynamic;
             }
-            resultDisplay.setText(String.valueOf(result));
-            finalResult.setText(String.valueOf(result));
-            firstNum = result;
+
+
+
+            // Check if the result is a valid number
+            if (!Double.isNaN(result) && !Double.isInfinite(result)) {
+                int integerResult = (int) result; // Convert to an integer
+                dynamicResult.setText(String.valueOf(integerResult));
+                finalResult.setText(String.valueOf(integerResult));
+            } else {
+                dynamicResult.setText(String.valueOf(result));
+                finalResult.setText(String.valueOf(result));
+            }
+            result = firstNum;
         });
-
-
-
-
-//        // Set onClick listeners for digit buttons
-//        btn0.setOnClickListener(v -> appendNumber(0));
-//        btn1.setOnClickListener(v -> appendNumber(1));
-//        btn2.setOnClickListener(v -> appendNumber(2));
-//        btn3.setOnClickListener(v -> appendNumber(3));
-//        btn4.setOnClickListener(v -> appendNumber(4));
-//        btn5.setOnClickListener(v -> appendNumber(5));
-//        btn6.setOnClickListener(v -> appendNumber(6));
-//        btn7.setOnClickListener(v -> appendNumber(7));
-//        btn8.setOnClickListener(v -> appendNumber(8));
-//        btn9.setOnClickListener(v -> appendNumber(9));
-//
-//        // Set onClick listeners for other buttons
-//
-//        // Set onClick listeners for operator buttons
-//        btnAdd.setOnClickListener(v -> performOperation("+"));
-//        btnAdd.setOnClickListener(v -> performOperation("-"));
-//        btnAdd.setOnClickListener(v -> performOperation("*"));
-//        btnAdd.setOnClickListener(v -> performOperation("/"));
-//
-//        // Set onClick listeners for Clear and Equals buttons
-//        btnClear.setOnClickListener(v -> clear());
-//        btnEquals.setOnClickListener(v -> calculate());
-//    }
-//
-//
-//    // Define a method to update the displayed numbers
-//    private void appendNumber(int number) {
-//        String currentText = resultTextView.getText().toString();
-//        currentText += String.valueOf(number);
-//        resultTextView.setText(currentText);
-//    }
-//
-//    // Define methods for operators and calculations
-//    private void performOperation(String op) {
-//        if (!operator.isEmpty()) {
-//            operand2 = Integer.parseInt(resultTextView.getText().toString());
-//            calculate();
-//            operator = op;
-//        } else {
-//            operator = op;
-//            operand1 = Integer.parseInt(resultTextView.getText().toString());
-//        }
-//        resultTextView.setText("");
-//    }
-//
-//    // Set onClick listeners for operator buttons
-//
-//
-//
-//    // Define methods for Clear and Equals buttons
-//    private void clear() {
-//        operand1 = 0;
-//        operand2 = 0;
-//        operator = "";
-//        resultTextView.setText("");
-//    }
-//
-//    private void calculate() {
-//        if (!Double.isNaN(operand1)) {
-//            operand2 = Integer.parseInt(resultTextView.getText().toString());
-//            switch (operator) {
-//                case "+":
-//                    operand1 += operand2;
-//                    break;
-//                case "-":
-//                    operand1 -= operand2;
-//                    break;
-//                case "*":
-//                    operand1 *= operand2;
-//                    break;
-//                case "/":
-//                    if (operand2 != 0) {
-//                        operand1 /= operand2;
-//                    } else {
-//                        resultTextView.setText("Error");
-//                        return;
-//                    }
-//                    break;
-//            }
-//            operator = "";
-//            resultTextView.setText(String.valueOf(operand1));
-//        }
-
-
 
     }
 

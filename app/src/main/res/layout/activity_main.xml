@@ -1,36 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
-    <TextView
-        android:id="@+id/textViewHeading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="40dp"
-        android:text="Calculator"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="-147dp">
 
 
     <TextView
         android:id="@+id/labelResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="208dp"
-        android:textStyle="bold"
-        android:textSize="25dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="80dp"
         android:text="Result"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,8 +25,8 @@
         android:id="@+id/finalResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="80dp"
         android:text="0"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -51,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/blue"
         android:text="8"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="180dp"
         android:backgroundTint="@color/blue"
         android:text="5"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,19 +60,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="240dp"
         android:backgroundTint="@color/blue"
         android:text="2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="296dp"
         android:backgroundTint="@color/blue"
         android:text="C"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="112dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="296dp"
         android:backgroundTint="@color/blue"
         android:text="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/blue"
         android:text="7"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="180dp"
         android:backgroundTint="@color/blue"
         android:text="4"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="240dp"
         android:backgroundTint="@color/blue"
         android:text="1"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/blue"
         android:text="9"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,7 +137,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginTop="180dp"
         android:backgroundTint="@color/blue"
         android:text="6"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,19 +148,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginTop="296dp"
         android:backgroundTint="@color/blue"
         android:text="="
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginTop="240dp"
         android:backgroundTint="@color/blue"
         android:text="3"
         app:layout_constraintStart_toStartOf="parent"
@@ -184,8 +169,8 @@
         android:id="@+id/btnDivide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="@color/blue"
         android:text="/"
         app:layout_constraintStart_toStartOf="parent"
@@ -195,8 +180,8 @@
         android:id="@+id/btnMultiply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="328dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="180dp"
         android:backgroundTint="@color/blue"
         android:text="*"
         app:layout_constraintStart_toStartOf="parent"
@@ -206,8 +191,8 @@
         android:id="@+id/btnMinus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="388dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="240dp"
         android:backgroundTint="@color/blue"
         android:text="-"
         app:layout_constraintStart_toStartOf="parent"
@@ -217,13 +202,12 @@
         android:id="@+id/btnPlus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
-        android:layout_marginTop="444dp"
+        android:layout_marginStart="288dp"
+        android:layout_marginTop="296dp"
         android:backgroundTint="@color/blue"
         android:text="+"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-       />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="409dp"
@@ -249,14 +233,23 @@
         android:id="@+id/resultDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="118dp"
+        android:layout_margin="8dp"
         android:background="@drawable/edittext_background"
         android:backgroundTint="#CCCCCC"
         android:padding="8dp"
-        android:layout_margin="8dp"
-        tools:ignore="MissingConstraints" />
+        android:text="0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/dynamicResult"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        tools:layout_editor_absoluteX="365dp"
+        tools:layout_editor_absoluteY="722dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
