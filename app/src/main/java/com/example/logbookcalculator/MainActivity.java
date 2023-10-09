@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean operatorClicked = false;
 
+
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
         btnEquals = findViewById(R.id.btnEquals);
 
 
+        // Disable operator buttons initially
+        disableOperators();
+
         ArrayList<Button> nums = new ArrayList<>();
         nums.add(btn0);
         nums.add(btn1);
@@ -84,17 +89,18 @@ public class MainActivity extends AppCompatActivity {
         for (Button b : nums) {
             b.setOnClickListener(view -> {
                 if (operatorClicked) {
-                    // Append the number to the resultDisplay without clearing it
                     resultDisplay.append(b.getText().toString());
                     dynamicResult.setText(dynamicResult.getText().toString() + b.getText().toString());
                 } else {
-                    // Replace the text in resultDisplay with the number
                     resultDisplay.setText(b.getText().toString());
                     dynamicResult.setText(b.getText().toString());
+                    enableOperators(); // Enable operator buttons after a number is clicked
                 }
-                operatorClicked = false; // Reset the operatorClicked flag
+                operatorClicked = false;
             });
         }
+
+
 
         ArrayList<Button> operators = new ArrayList<>();
         operators.add(btnAdd);
@@ -104,14 +110,16 @@ public class MainActivity extends AppCompatActivity {
 
         for (Button b : operators) {
             b.setOnClickListener(view -> {
-                firstNum = Double.parseDouble(resultDisplay.getText().toString());
-                firstNumDynamic = Double.parseDouble(dynamicResult.getText().toString());
-                operation = b.getText().toString();
+                if (!operatorClicked) { // Check if an operator has not been clicked
+                    firstNum = Double.parseDouble(resultDisplay.getText().toString());
+                    firstNumDynamic = Double.parseDouble(dynamicResult.getText().toString());
+                    operation = b.getText().toString();
 
-                // Append the operator to the resultDisplay
-                resultDisplay.append(operation);
-                dynamicResult.setText("0");
-                operatorClicked = true; // Set the operatorClicked flag to true
+                    // Append the operator to the resultDisplay
+                    resultDisplay.append(operation);
+                    dynamicResult.setText("0");
+                    operatorClicked = true; // Set the operatorClicked flag to true
+                }
             });
         }
 
@@ -145,8 +153,6 @@ public class MainActivity extends AppCompatActivity {
                     result = firstNumDynamic + secondNumDynamic;
             }
 
-
-
             // Check if the result is a valid number
             if (!Double.isNaN(result) && !Double.isInfinite(result)) {
                 int integerResult = (int) result; // Convert to an integer
@@ -156,8 +162,28 @@ public class MainActivity extends AppCompatActivity {
                 dynamicResult.setText(String.valueOf(result));
                 finalResult.setText(String.valueOf(result));
             }
-            result = firstNum;
+
+            // Reset operatorClicked flag for the next calculation
+            operatorClicked = true;
+            firstNumDynamic = result; // Set the result as the firstNumDynamic
         });
+
+    }
+
+    // Helper method to disable operator buttons
+    private void disableOperators() {
+        btnAdd.setEnabled(false);
+        btnSubtract.setEnabled(false);
+        btnMultiply.setEnabled(false);
+        btnDivide.setEnabled(false);
+    }
+
+    // Helper method to enable operator buttons
+    private void enableOperators() {
+        btnAdd.setEnabled(true);
+        btnSubtract.setEnabled(true);
+        btnMultiply.setEnabled(true);
+        btnDivide.setEnabled(true);
     }
 }
 
