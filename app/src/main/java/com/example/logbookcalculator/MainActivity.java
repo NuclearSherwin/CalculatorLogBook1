@@ -16,25 +16,18 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    TextView labelResult, txtResult;
-
-
     private TextView finalResult;
     private TextView dynamicResult;
     private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
     private Button btnAdd, btnSubtract, btnMultiply, btnDivide;
     private Button btnClear, btnEquals;
     private EditText resultDisplay;
-
-    private String operator;
     double firstNum;
 
     double firstNumDynamic;
     String operation;
 
     private boolean operatorClicked = false;
-
 
 
     @SuppressLint("SetTextI18n")
@@ -71,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         btnEquals = findViewById(R.id.btnEquals);
 
 
-        // Disable operator buttons initially
-        disableOperators();
+        enableOperators();
+
 
         ArrayList<Button> nums = new ArrayList<>();
         nums.add(btn0);
@@ -89,16 +82,29 @@ public class MainActivity extends AppCompatActivity {
         for (Button b : nums) {
             b.setOnClickListener(view -> {
                 if (operatorClicked) {
-                    resultDisplay.append(b.getText().toString());
-                    dynamicResult.setText(dynamicResult.getText().toString() + b.getText().toString());
+                    String currentText = resultDisplay.getText().toString();
+                    if (currentText.equals("0")) {
+                        resultDisplay.setText(b.getText().toString()); // Replace "0" with the new digit
+                        dynamicResult.setText(b.getText().toString()); // Replace "0" with the new digit
+                    } else {
+                        resultDisplay.setText(currentText + b.getText().toString()); // Append the number
+                        dynamicResult.setText(dynamicResult.getText().toString() + b.getText().toString()); // Append the number
+                    }
                 } else {
-                    resultDisplay.setText(b.getText().toString());
-                    dynamicResult.setText(b.getText().toString());
-                    enableOperators(); // Enable operator buttons after a number is clicked
+                    String currentText = resultDisplay.getText().toString();
+                    if (currentText.equals("0")) {
+                        resultDisplay.setText(b.getText().toString()); // Replace "0" with the new digit
+                        dynamicResult.setText(b.getText().toString()); // Replace "0" with the new digit
+                        enableOperators(); // Enable operator buttons after a number is clicked
+                    } else {
+                        resultDisplay.setText(currentText + b.getText().toString()); // Append the number
+                        dynamicResult.setText(dynamicResult.getText().toString() + b.getText().toString()); // Append the number
+                    }
                 }
                 operatorClicked = false;
             });
         }
+
 
 
 
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     operation = b.getText().toString();
 
                     // Append the operator to the resultDisplay
-                    resultDisplay.append(operation);
+                    resultDisplay.setText(resultDisplay.getText().toString() + operation); // Append the operator
                     dynamicResult.setText("0");
                     operatorClicked = true; // Set the operatorClicked flag to true
                 }
@@ -165,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Reset operatorClicked flag for the next calculation
             operatorClicked = true;
+            firstNum = result;
             firstNumDynamic = result; // Set the result as the firstNumDynamic
         });
 
